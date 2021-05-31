@@ -1,0 +1,265 @@
+#table {
+    width: 1000px;
+    text-align: center;
+
+    user-select: none;
+    border-collapse: collapse;
+    border: solid 2px black;
+
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#table thead th {
+    background-color: #edf100;
+}
+
+#table thead th,
+#table tbody td {
+    border: solid 1px black;
+    padding: 13px;
+}
+
+#table thead th:last-child,
+#table tbody td:last-child {
+    max-width: 300px;
+    text-align: center;
+}
+
+.button {
+    border-style: none;
+    padding: 0 20px;
+    min-height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+.button.red {
+    background-color: #ff4949;
+    border: solid 1px #ff4949;
+
+}
+
+.button.red:hover {
+    background-color: #fff;
+    border: solid 1px #ff4949;
+    color: #ff4949;
+}
+
+.button.blue {
+    background-color: #1fb6ff;
+    border: solid 1px #1fb6ff;
+}
+
+.button.blue:hover {
+    background-color: #fff;
+    border: solid 1px #1fb6ff;
+    color: #1fb6ff;
+}
+
+.button.green {
+    background-color: #13CE66;
+    border: solid 1px #13CE66;
+}
+
+.button.green:hover {
+    background-color: #fff;
+    border: solid 1px #13CE66;
+    color: #13CE66;
+}
+
+.button.yellow {
+    background-color: #d7db03;
+    border: solid 1px #d7db03;
+}
+
+.button.yellow:hover {
+    background-color: #fff;
+    border: solid 1px #d7db03;
+    color: #d7db03;
+}
+
+#container-register {
+    width: calc(40px + 35vw);
+    display: flex;
+    flex-direction: column;
+
+    border: solid 2px black;
+
+    margin: 0 auto 5vh;
+    border-radius: 5px;
+}
+
+#form-register {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+    margin: 40px auto;
+}
+
+#form-register div {
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#div-register {
+    display: flex;
+    margin: 0 auto 30px;
+    gap: 20px;
+}
+
+.input-form {
+    width: calc(40px + 10vw);
+    height: 30px;
+    padding: 0 3px;
+    font-size: 14px;
+    border-radius: 3px;
+    outline-style: none;
+    border: 1px solid #919191;
+}
+
+.input-form:focus {
+    border: 2px solid #1fb6ff;
+}
+
+#container-price {
+    width: calc(40px + 40vw);
+    display: flex;
+    flex-direction: column;
+
+    border: solid 2px black;
+
+    margin: 150px auto;
+    border-radius: 5px;
+}
+
+#container-price header {
+    padding: 10px;
+
+}
+
+#container-price h1 {
+    border-bottom: solid 1.5px rgba(63, 63, 63, 0.849);
+}
+
+#form-price {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+    margin: 40px auto;
+}
+
+#form-price div {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#div-price {
+    display: flex;
+    margin: 0 auto 30px;
+    gap: 60px;
+}
+
+#container-receipt {
+    width: calc(40px + 40vw);
+    display: flex;
+    flex-direction: column;
+
+    margin: 50px auto;
+    border-radius: 5px;
+}
+
+#container-receipt header {
+    padding: 10px;
+
+}
+
+#container-receipt h1 {
+    border-bottom: solid 1.5px rgba(63, 63, 63, 0.849);
+}
+
+#form-receipt {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+    margin: 40px auto;
+}
+
+#form-receipt div {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+
+}
+
+#div-receipt {
+    display: flex;
+    margin: 0 auto;
+    gap: 60px;
+}
+
+.input-readonly {
+    border-style: none;
+    border-bottom: solid 1px black;
+}
+
+.input-readonly:focus {
+    outline-style: none;
+    border-bottom: solid 1px black;
+}
+
+footer {
+    height: 50px;
+    background-color: #343a40;
+    color: whitesmoke;
+    text-align: center;
+    line-height: 50px;
+}
+
+.modal {
+    width: calc(40px + 35vw);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-self: center;
+    z-index: -10;
+    opacity: 0;
+
+    border: solid 2px black;
+
+    margin: 0 auto 5vh;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255); 
+    
+}
+
+.modal.active{
+    z-index: 5000;
+    opacity: 1;
+}
+
+#modal-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+    margin: 40px auto;
+}
+
+#modal-content div {
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

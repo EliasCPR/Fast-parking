@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastParking</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleGlobal.css">
+    <link rel="stylesheet" href="css/hader.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="sortcut icon" href="img/fastParking.png" type="image/jpg">
+    <script type="module" src="main.js" defer></script>
+
+</head>
+
+<body>
+    <header id="header">
+        <h1>Sistema <span id="Fast">Fast</span><span id="Parking">Parking</span></h1>
+        <img src="logoFastParking.png" alt="FastParking" title="FastParking">
+    </header>
+    <main>
+        <div class="modal" id="modal">
+            <form id="modal-content">
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" class="input-form" id="nomeModal" placeholder="Nome" required />
+                </div>
+                <div>
+                    <label for="placa">Placa</label>
+                    <input type="text" class="input-form" id="placaModal" placeholder="Placa" required />
+                </div>
+            </form>
+            <div id="div-register">
+                <button type="submit" class="button green" id="salvarModal">Salvar</button>
+                <button type="button" class="button yellow" id="cancelar"
+                    onclick="javascript:window.location.href='index.html'">Cancelar</button>
+            </div>
+        </div>
+        <div id="container-register">
+            <form id="form-register">
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" class="input-form" id="nome" placeholder="Nome" required />
+                </div>
+                <div>
+                    <label for="placa">Placa</label>
+                    <input type="text" class="input-form" id="placa" placeholder="Placa" required />
+                </div>
+            </form>
+            <div id="div-register">
+                <button type="submit" class="button green" id="salvar">Salvar</button>
+                <button type="button" class="button yellow" id="cancelar"
+                    onclick="javascript:window.location.href='precos.html'">Preços</button>
+            </div>
+        </div>
+
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Placa</th>
+                    <th>data</th>
+                    <th>Hora</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>Maria da Silva</td>
+                <td>RCA-3438</td>
+                <td>12/11/2018</td>
+                <td>14:00</td>
+                <td>
+                    <button class="button green" type="button">Comp.</button>
+                    <button class="button blue" type="button" id="editar">Editar</button>
+                    <button class="button red" type="button" id="saida">Saída</button>
+                </td>
+            </tbody>
+            
+        </table>
+    </main>
+    <footer>
+        <div>
+            <small>Copyright &copy; Elias Mateus Prado Oliveira Oliveira</small>
+        </div>
+    </footer>
+</body>
+
+</html>

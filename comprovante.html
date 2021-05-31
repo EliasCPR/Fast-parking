@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleGlobal.css">
+    <link rel="stylesheet" href="css/hader.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="sortcut icon" href="img/fastParking.png" type="image/jpg">
+</head>
+
+<body>
+    <header id="header">
+        <h1>Sistema <span id="Fast">Fast</span><span id="Parking">Parking</span></h1>
+        <img src="logoFastParking.png" alt="FastParking" title="FastParking">
+    </header>
+    <main>
+        <div id="container-receipt">
+            <header>
+                <h1>Comprovante</h1>
+            </header>
+            <form id="form-receipt">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input id="nome" class="input-readonly" readonly />
+                </div>
+                <div>
+                    <label for="placa">Placa:</label>
+                     <input id="placa" class="input-readonly" readonly />
+                </div>
+                <div>
+                    <label for="data">Data:</label>
+                     <input id="data" class="input-readonly" readonly />
+                </div>
+                <div>
+                    <label for="hora">Hora:</label>
+                     <input id="hora" class="input-readonly" readonly />
+                </div>
+            </form>
+            <div id="div-receipt">
+                <button type="submit" class="button blue" id="salvar"
+                    onclick="javascript:window.alert('Imprimindo...')">Imprimir</button>
+                <button type="button" class="button red" id="cancelar"
+                    onclick="javascript:window.location.href='index.html'">Cancelar</button>
+            </div>
+
+        </div>
+    </main>
+    <script type="module" src="comprovante.js"></script>
+</body>
+
+</html>
