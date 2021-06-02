@@ -7,7 +7,11 @@ metodologia de CRUD(Create (criar), Read (ler), Update (atualizar) e Delete (exc
 para termos uma melhor experiência do usuario.</h3>
 
 <h2>Guia do projeto</h2>
-☑️O adm do estacionamento devera colocar o nome do motorista e a placa
-
+--O adm do estacionamento devera colocar o nome do motorista e a placa
+--Antes de salvar deve colocar o preço e quanto custara as demais horas
+--volte a tela inicial e salve
+--vai ser adicionado a lista de clientes cadastrados
+--e tambem pode ser alterado caso tenha errado algum dado,excluído e tem 
+o comprovante quando o cliente sair
 
 https://eliascpr.github.io/Fast-parking/
