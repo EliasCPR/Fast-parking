@@ -232,7 +232,6 @@ footer {
     display: flex;
     flex-direction: column;
     position: fixed;
-    align-self: center;
     z-index: -10;
     opacity: 0;
 
@@ -240,8 +239,7 @@ footer {
 
     margin: 0 auto 5vh;
     border-radius: 5px;
-    background-color: rgb(255, 255, 255); 
-    
+    background-color: black;
 }
 
 .modal.active{

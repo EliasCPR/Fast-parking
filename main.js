@@ -1,12 +1,11 @@
 'use strict'
-// owner = proprietario
-import {readDB} from './commom.js';
+// owner = proprietario essa parte peguei do codigo de um colega por ter duvidas
 
-const openModal = () => document.querySelector('.modal')
-    .classList.add('active')
+import {
+    readDB
+} from './commom.js';
 
-const closeModal = () => document.querySelector('.modal')
-    .classList.remove('active')
+const readDBPrice = () => JSON.parse(window.localStorage.getItem('price')) ?? [];
 
 const setDB = (db) => localStorage.setItem('db', JSON.stringify(db))
 
@@ -16,9 +15,15 @@ const insertDB = (owner) => {
     setDB(db)
 }
 
-const updateOwner = (owner, index) => {
-    const db = readDB
-    db[index] = owner
+const updateOwner = ({nome, placa}, index) => {
+    const db = readDB()
+    const newOwner = {
+        nome, 
+        placa,
+        data: db[index].data,
+        hora: db[index].hora
+    }
+    db[index] = newOwner
     setDB(db)
 }
 
@@ -36,7 +41,7 @@ const createRow = (owner, index) => {
         <td>${owner.nome}</td>
         <td>${owner.placa}</td>
         <td>${owner.data}</td>
-        <td>${owner.hora}</td>
+        <td id="teste">${owner.hora}</td>
         <td>
             <button class="button green" type="button" data-owerid="${owner.id}" data-action="comp-${index}" id="comp">Comp.</button>
             <button class="button blue" type="button" id="editar" data-action="editar-${index}">Editar</button>
@@ -44,30 +49,6 @@ const createRow = (owner, index) => {
         </td>
     `
     recordOwner.appendChild(newTr)
-}
-
-const createComprovante = (owner, index) => {
-    const recordOwner = document.querySelector('#form-receipt')
-    const newInput = document.createElement('input')
-    newInput.innerHTML = `
-                    <label>Nome:</label>
-                    <input class="input-readonly" value="${owner.nome}" readonly/>
-
-                    <label>Placa:</label>
-                    <input class="input-readonly" value="${db.placa}" readonly/>
-
-                    <label>Data:</label>
-                    <input class="input-readonly" value="${db.data}" readonly/>
-
-                    <label>Hora:</label>
-                    <input class="input-readonly" value="${db.hora}" readonly/>
-    `
-    recordOwner.appendChild(newInput)
-}
-
-const updateComp = () => {
-    const db = readDB()
-    db.forEach(createComprovante)
 }
 
 const updateTable = () => {
@@ -79,48 +60,117 @@ const updateTable = () => {
 const clearInput = () => {
     document.querySelector('#nome').value = ''
     document.querySelector('#placa').value = ''
+    document.querySelector('#nome').dataset.index = ''
+}
+
+const date = () => {
+    const data = new Date();
+
+    let day = data.getDate() 
+    let mouth = data.getMonth() + 1
+    let year = data.getFullYear()
+
+    let dateNow = day + '/' + mouth + '/' + year
+
+    return dateNow
+}
+
+const hours = () => {
+    const data = new Date();
+
+    let hours = data.getHours()
+    let minutes = data.getMinutes()
+
+    let hoursNow = hours + ':' + minutes
+
+    return hoursNow
 }
 
 const isValidForm = () => document.querySelector('#form-register').reportValidity()
 
 const saveOwner = () => {
+    const dbPrice = readDBPrice()
+
     if (isValidForm()) {
-        const data = new Date();
 
-        const hours = data.getHours()
-        const minutes = data.getMinutes()
-        const day = data.getDate()
-        const mouth = data.getMonth()
-        const year = data.getFullYear()
+        if (dbPrice == '') {
+            alert("Defina os preços antes de inserir um cliente")
 
-        const dateNow = day + '/' + mouth + '/' + year
-        const hoursMinutesNow = hours + ':' + minutes
-
-        const newOwner = {
-            nome: document.querySelector('#nome').value,
-            placa: document.querySelector('#placa').value,
-            data: dateNow,
-            hora: hoursMinutesNow
-        }
-        newOwner.id = newOwner.nome + newOwner.placa + newOwner.data
-
-        const index = document.querySelector('#nome').dataset.index
-
-        if (index != '') {
-            insertDB(newOwner)
         } else {
-            updateOwner(newOwner, index)
+            const newOwner = {
+                nome: document.querySelector('#nome').value,
+                placa: document.querySelector('#placa').value,
+                data:  date(),
+                hora: hours()
+            }
+            newOwner.id = newOwner.nome + newOwner.placa + newOwner.data
+
+            const index = document.querySelector('#nome').dataset.index
+
+            if (index == "") {
+                insertDB(newOwner)
+                console.log("insert")
+            } else {
+                updateOwner(newOwner, index)
+                console.log("update")
+                // location.replace('index.html')
+            }
+
+            clearInput()
+
+            updateTable()
+            console.log("finalizado")
         }
-
-        clearInput()
-
-        updateTable()
     }
+}
+
+const licensePlateMask = (number) => {
+
+    number = number.replace(/(^.{3}$)/,'$1-')
+    number = number.replace(/(^.{9}$)/,'')
+    return number
+}
+
+const applyMask = (event) => {
+    event.target.value = licensePlateMask(event.target.value)
+}
+
+const debtPayable = (index) => {
+    const dbPrice = readDBPrice()
+    const db = readDB()
+
+    let hoursOwner = db[index].hora
+    let totalToPay = 0
+    let firstHourPrice = dbPrice[0].primeiraHora.replace(",", ".")
+    let anyHoursPrice = dbPrice[0].demaisHoras.replace(",", ".")
+
+    const hoursArrivel = parseInt(hoursOwner.substr(0, 2)) * 3600
+    const minutesArrivel = parseInt(hoursOwner.substr(3, 4)) * 60
+
+    const departureHours = parseInt(hours().substr(0, 2)) * 3600
+    const outgoingMinutes = parseInt(hours().substr(3, 4)) * 60
+
+    const secondsExit = ((departureHours + outgoingMinutes) - (hoursArrivel + minutesArrivel))
+
+    const numberOfHoursParked = secondsExit / 3600
+
+    if (numberOfHoursParked <= 1) {
+        totalToPay = firstHourPrice
+        console.log(totalToPay)
+    } else {
+        totalToPay = parseInt(firstHourPrice) + (anyHoursPrice * Math.trunc(numberOfHoursParked))
+        console.log(totalToPay)
+    }
+
+    return totalToPay
 }
 
 const deleteOwner = (index) => {
     const db = readDB()
-    const resp = confirm(`Deseja confirmar a saida de ${db[index].nome}?`)
+
+    const totalToPay = debtPayable(index)
+
+    const resp = confirm(`O valor total de ${db[index].nome}da placa ${db[index].placa} foi R$${totalToPay}?`)
 
     if (resp) {
         db.splice(index, 1)
@@ -131,13 +181,13 @@ const deleteOwner = (index) => {
 
 const editOwner = (index) => {
     const db = readDB()
+    const lastRecord = db[db.length - 1]
+
     document.querySelector('#nome').value = db[index].nome
     document.querySelector('#placa').value = db[index].placa
-    document.querySelector('#nome').dataset.index = index
-    console.log("editOwner")
-    openModal()
-}
 
+    document.querySelector('#nome').dataset.index = index
+}
 
 function actionButtons(event) {
     const element = event.target
@@ -157,12 +207,12 @@ function actionButtons(event) {
     actionCallback()
 }
 
-
-
 document.querySelector('#salvar').addEventListener('click', saveOwner)
-// document.querySelector('#comp').addEventListener('click', updateComp)
-// document.querySelector('#editar').addEventListener('click', console.log("editar"))
-// document.querySelector('#saida').addEventListener('click', console.log("saida"))
 document.querySelector('#table').addEventListener('click', actionButtons)
+document.querySelector('#placa').addEventListener('keyup', applyMask)
+document.querySelector('#placa').addEventListener('keyup', (ev) => {
+	const input = ev.target;
+	input.value = input.value.toUpperCase();
+});
 
 updateTable()

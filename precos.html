@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,30 +10,33 @@
     <link rel="stylesheet" href="css/styleGlobal.css">
     <link rel="stylesheet" href="css/hader.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="sortcut icon" href="img/fastParking.png" type="image/jpg">
-    <script src="main.js" defer></script>
+    <script src="precos.js" defer></script>
 </head>
+
 <body>
     <main>
-    <div id="container-price">
-        <header>
-            <h1>Preços</h1>
-        </header>       
-        <form id="form-price">
-            <div>
-                <label for="primeira-hora">Primeira hora</label>
-                <input type="text" class="input-form" id="primeira-hora" placeholder="Primeira hora" required/>
+        <div id="container-price">
+            <header>
+                <h1>Preços</h1>
+            </header>
+            <form id="form-price">
+                <div>
+                    <label for="primeira-hora">Primeira hora</label>
+                    <input type="text" class="input-form" id="primeira-hora" placeholder="Primeira hora" required />
+                </div>
+                <div>
+                    <label for="demais-horas">Demais horas</label>
+                    <input type="text" class="input-form" id="demais-horas" placeholder="Demais horas" required />
+                </div>
+            </form>
+            <div id="div-price">
+                <button type="submit" class="button green" id="salvarPreco"
+                    onclick="javascript:window.location.href='index.html'">Salvar</button>
+                <button type="button" class="button red" id="cancelar"
+                    onclick="javascript:window.location.href='index.html'">Cancelar</button>
             </div>
-            <div>
-                <label for="demais-horas">Demais horas</label>
-                <input type="text" class="input-form" id="demais-horas" placeholder="Demais horas" required/>
-            </div>
-        </form>
-        <div id="div-price">
-            <button type="submit" class="button green" id="salvar" onclick="javascript:window.location.href='index.html'">Salvar</button>
-            <button type="button" class="button red" id="cancelar" onclick="javascript:window.location.href='index.html'">Cancelar</button>
         </div>
-    </div>
     </main>
 </body>
+
 </html>
